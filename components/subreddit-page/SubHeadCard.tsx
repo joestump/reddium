@@ -9,7 +9,7 @@ import { PostMetadata } from "../common";
 const SubHeadCard = (post: Post) =>
   post.hasOwnProperty("title") ? (
     <div className="overflow-hidden">
-      <div className="max-w-600">
+      <div className="max-w-[80%]">
         <div className="sub-text font-medium main-black flex flex-row items-center mb-4 pt-1">
           <div
             className="rounded-full"
@@ -78,7 +78,7 @@ const SubHeadCard = (post: Post) =>
       </div>
     </div>
   ) : (
-    <div className="max-w-600 overflow-hidden shimmer">
+    <div className="max-w-[80%] overflow-hidden shimmer">
       <div
         className="w-full shimmer-bg"
         style={{

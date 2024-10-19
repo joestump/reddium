@@ -59,7 +59,7 @@ const PostContent = ({
   };
 
   return (
-    <div className="w-full mx-auto max-w-600 pb-2 mt-6 sm:mx-6 sm:w-auto">
+    <div className="w-full mx-auto max-w-[80%] pb-2 mt-6 sm:mx-6 sm:w-auto">
       <h1 className="heading-font text-5xl font-normal leading-tight sm:text-3xl sm:leading-9">
         {title}
       </h1>

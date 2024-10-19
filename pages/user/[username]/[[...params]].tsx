@@ -93,7 +93,7 @@ const UserPage = ({ postData, userInfo, params }: any) => {
       </header>
       <section className="mt-12">
         <div className="max-width-main mx-auto">
-          <div className="w-full mx-auto max-w-600 pb-10">
+          <div className="w-full mx-auto max-w-[80%] pb-10">
             {posts.map((item: any, ind: number) =>
               item.kind == "t3" ? (
                 <UserPost key={ind} {...item} />

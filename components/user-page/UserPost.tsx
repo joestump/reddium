@@ -27,7 +27,7 @@ const UserPost = ({
   thumbnail,
   num_comments,
 }: Post) => (
-  <div className="w-full mx-auto max-w-600 pb-2 mb-6 sm:mx-6 sm:w-auto">
+  <div className="w-full mx-auto max-w-[80%] pb-2 mb-6 sm:mx-6 sm:w-auto">
     <div className="flex items-center text-sm">
       <div className="flex items-center main-black">
         <span>Published in </span>

@@ -90,7 +90,7 @@ const PostPage = ({ post, comments, params, commentId }: any) => {
       <section>
         <PostContent {...post} token={selectedParams.token} />
       </section>
-      <section className="w-full mx-auto max-w-600 pb-10">
+      <section className="w-full mx-auto pb-10">
         <div className="sub-bottom-border mb-4 pt-4"></div>
         <div className="flex justify-start mb-8">
           <div className="max-width-filter flex w-full px-4">
