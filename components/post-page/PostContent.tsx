@@ -210,7 +210,13 @@ const PostContent = ({
             </div>
           </div>
           <div className="ml-4 flex flex-row items-center sub-opacity-54 tracking-tight">
-            <Image className="cursor-pointer w-8 pt-1" src="/comment.svg" alt="Comment" width={32} height={32} />
+            <Image 
+              className="cursor-pointer w-8 pt-1" 
+              src="/comment.svg" 
+              alt="Comment" 
+              width={32} 
+              height={32} 
+            />
             <div>
               <p className="ml-1">{num_comments}</p>
             </div>
@@ -218,9 +224,23 @@ const PostContent = ({
         </div>
         <div className="flex flex-row items-center tracking-normal">
           {isSaved ? (
-            <Image className="cursor-pointer" src="/save1.svg" alt="Saved" width={24} height={24} onClick={() => savePost(0)}/>
+            <Image 
+              className="cursor-pointer" 
+              src="/save1.svg" 
+              alt="Saved" 
+              width={24} 
+              height={24} 
+              onClick={() => savePost(0)}
+            />
           ) : (
-            <Image className="cursor-pointer" src="/save.svg" alt="Not saved" width={24} height={24} onClick={() => savePost(1)}/>
+            <Image 
+              className="cursor-pointer" 
+              src="/save.svg" 
+              alt="Not saved" 
+              width={24} 
+              height={24} 
+              onClick={() => savePost(1)}
+            />
           )}
         </div>
       </div>

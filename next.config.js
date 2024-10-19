@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true,
-    domains: ["a.thumbs.redditmedia.com"],
+    domains: ['a.thumbs.redditmedia.com', 'b.thumbs.redditmedia.com'],
+    loader: 'custom',
+    loaderFile: './lib/imageLoader.ts',
   },
   publicRuntimeConfig: Object.keys(process.env).reduce((config, key) => {
     if (key.startsWith('REDDIUM_')) {
