@@ -1,4 +1,5 @@
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
     unoptimized: true,
     domains: ["a.thumbs.redditmedia.com"],
@@ -9,4 +10,10 @@ module.exports = {
     }
     return config;
   }, {}),
+  eslint: {
+    dirs: ['pages', 'components', 'lib', 'src'], // specify directories to lint
+    ignoreDuringBuilds: false, // or true if you want to ignore ESLint errors during builds
+  },
 };
+
+module.exports = nextConfig;

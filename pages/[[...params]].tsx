@@ -73,7 +73,7 @@ const IndexPage = ({ trendingSubs, profile, params }: any) => {
     getPopularPostsClient({ ...selectedParams, home: true }).then((res) => {
       setPostData(res);
     });
-  }, []);
+  }, [selectedParams]); // Add selectedParams to the dependency array
 
   const filterPopular = () => {
     setPostData(LOADING_POST_LIST);
