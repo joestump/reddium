@@ -1,4 +1,6 @@
 import React from "react";
+import Image from 'next/image';
+import Link from 'next/link';
 import MarkdownView from "react-showdown";
 import {
   getIntFromString,
@@ -29,31 +31,41 @@ const UserPost = ({
     <div className="flex items-center text-sm">
       <div className="flex items-center main-black">
         <span>Published in </span>
-        <a href={`/${subreddit_name_prefixed.replace("u/", "r/u_")}`}>
+        <Link href={`/${subreddit_name_prefixed.replace("u/", "r/u_")}`}>
           <span className="font-bold ml-1">{subreddit_name_prefixed}</span>
-        </a>
+        </Link>
       </div>
       <span className="px-1 sub-link-grey">·</span>
       <span className="sub-link-grey">{getTime(created_utc)}</span>
     </div>
-    <a href={permalink}>
+    <Link href={permalink}>
       <h1 className="text-4xl mt-3 font-bold tracking-tight leading-tight sm:text-2xl sm:leading-8">
         {title}
       </h1>
-    </a>
+    </Link>
     <h3 className="sub-link-grey text-xl mt-1 font-normal tracking-tight sm:text-lg sm:mt-2 sm:leading-5">
       {limitText(selftext, TITLE_MAX)}
     </h3>
     <figure className="mt-8">
       {url &&
       (url.includes(".jpg") || url.includes(".png") || url.includes(".gif")) ? (
-        <img
+        <Image
           className="w-full shimmer-bg"
           src={replaceGifv(url)}
-          width="100%"
+          alt={title}
+          width={600}
+          height={300}
+          layout="responsive"
         />
       ) : thumbnail && thumbnail.includes("://") ? (
-        <img className="w-full shimmer-bg" src={thumbnail} width="100%" />
+        <Image
+          className="w-full shimmer-bg"
+          src={thumbnail}
+          alt={title}
+          width={600}
+          height={300}
+          layout="responsive"
+        />
       ) : (
         <div
           className="w-full shimmer-bg"
@@ -85,9 +97,9 @@ const UserPost = ({
               )}
             </span>{" "}
             on{" "}
-            <a href="https://unsplash.com" className="underline">
+            <Link href="https://unsplash.com" className="underline">
               Unsplash
-            </a>
+            </Link>
           </div>
         ) : (
           "Original Image"
@@ -101,28 +113,28 @@ const UserPost = ({
       />
     </div>
     <div className="mt-2">
-      <a
+      <Link
         href={permalink}
         className="link-green-hover main-green tracking-normal text-sm"
-      >{`Read more in ${subreddit_name_prefixed}`}</a>
+      >{`Read more in ${subreddit_name_prefixed}`}</Link>
     </div>
     <div className="w-full mt-4 py-4 flex flex-row justify-between items-center">
       <div className="flex flex-row items-center">
         <div className="flex flex-row items-center tracking-tight">
-          <img className="cursor-pointer w-6" src="/clap.svg" />
+          <Image className="cursor-pointer w-6" src="/clap.svg" alt="Clap" width={24} height={24} />
           <div>
             <p className="ml-2">{ups}</p>
           </div>
         </div>
         <div className="ml-4 flex flex-row items-center tracking-tight">
-          <img className="cursor-pointer w-6 pt-1" src="/comment.svg" />
+          <Image className="cursor-pointer w-6 pt-1" src="/comment.svg" alt="Comment" width={24} height={24} />
           <div>
             <p className="ml-1">{num_comments}</p>
           </div>
         </div>
       </div>
       <div className="flex flex-row items-center tracking-normal">
-        <img className="cursor-pointer" src="/save.svg" />
+        <Image className="cursor-pointer" src="/save.svg" alt="Save" width={24} height={24} />
       </div>
     </div>
     <div className="sub-bottom-border mb-4 pt-6"></div>

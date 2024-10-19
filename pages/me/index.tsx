@@ -1,4 +1,6 @@
 import { GetServerSideProps } from "next";
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   getProfile,
   getUserInfo,
@@ -74,9 +76,9 @@ const MePage = ({ postData, userInfo, params }: any) => {
       <div className="h-full hidden sm:flex py-3 px-8 items-center sub-bottom-border justify-end max-width-main mx-auto z-50 h-16">
         <div className="flex flex-row items-center">
           <NavMenu token={params.token} />
-          <a href="/">
-            <img className="ml-4 h-6 logo-opacity" src="/reddium_symbol.svg" />
-          </a>
+          <Link href="/">
+            <Image className="ml-4 h-6 logo-opacity" src="/reddium_symbol.svg" alt="Reddium Symbol" width={24} height={24} />
+          </Link>
         </div>
       </div>
       <header className="sub-bottom-border h-160">
@@ -84,31 +86,34 @@ const MePage = ({ postData, userInfo, params }: any) => {
           <div className="flex w-full items-center justify-center">
             <div className="flex-grow flex items-center flex-row sm:flex-col sm:items-start">
               <div className="mr-8 flex flex-row items-center cursor-pointer">
-                <a className="main-black" href={`/user/${userInfo.name}`}>
+                <Link className="main-black" href={`/user/${userInfo.name}`}>
                   <h2 className="text-2xl font-bold">{userInfo.name}</h2>
-                </a>
+                </Link>
               </div>
               <div className="flex flex-row items-center sub-link-grey sm:mt-2">
                 <div className="mx-2 sm:ml-0">{`${userInfo.total_karma} Karma`}</div>
                 <span className="px-2">·</span>
                 <div className="mx-2">
-                  <a
+                  <Link
                     className="link-black-hover"
                     href={`/user/${userInfo.name}`}
                   >
                     Overview
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="flex flex-row items-center sm:hidden">
               <NavMenu token={params.token} />
-              <a href="/">
-                <img
+              <Link href="/">
+                <Image
                   className="ml-6 h-6 logo-opacity"
                   src="/reddium_symbol.svg"
+                  alt="Reddium Symbol"
+                  width={24}
+                  height={24}
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </nav>
@@ -117,12 +122,15 @@ const MePage = ({ postData, userInfo, params }: any) => {
         <div className="max-width-main mx-auto flex flex-row">
           <div className="w-user w-full pl-4 lg:hidden pt-12">
             <div className="w-132 flex flex-col text-sm top-150 sticky">
-              <img
+              <Image
                 className="w-full mb-8"
                 src={`/avatars/avatar_${getIntFromString(
                   userInfo.name,
                   18
                 )}.jpg`}
+                alt={`${userInfo.name}'s avatar`}
+                width={132}
+                height={132}
               />
               <div className="uppercase sub-opacity-54 font-normal tracking-wide mb-2">
                 About
@@ -149,7 +157,7 @@ const MePage = ({ postData, userInfo, params }: any) => {
                 onClick={fetchMorePosts}
               >
                 <div className="flex-grow text-center">Show More</div>
-                <img className="ml-3" src="/down_arrow.svg" />
+                <Image className="ml-3" src="/down_arrow.svg" alt="Show more" width={24} height={24} />
               </button>
             </div>
           </div>

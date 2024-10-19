@@ -1,4 +1,6 @@
 import React from "react";
+import Image from 'next/image';
+import Link from 'next/link';
 import { getIntFromString } from "../functions/common";
 import { DOMAIN, PLACEHOLDER_IMAGES } from "../functions/constants";
 import { Props } from "../interfaces";
@@ -27,11 +29,11 @@ const PostLayout = ({ children, title, permalink, thumbnail, token }: Props) => 
     <header>
       <nav className="flex px-4 items-center justify-center max-width-main mx-auto z-50 h-16 lg:mx-12 sm:mx-6 sm:px-0">
         <div className="flex-grow flex items-center">
-          <a href="/">
+          <Link href="/">
             <div className="pr-4 h-6 flex flex-row items-center cursor-pointer">
-              <img className="h-full sm:h-6" src="/reddium_symbol.svg" />
+              <Image className="h-full sm:h-6" src="/reddium_symbol.svg" alt="Reddium Symbol" width={24} height={24} />
             </div>
-          </a>
+          </Link>
         </div>
         <NavMenu token={token}/>
       </nav>

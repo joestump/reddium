@@ -1,4 +1,6 @@
 import React from "react";
+import Image from 'next/image';
+import Link from 'next/link';
 import { getIntFromString } from "../../functions/common";
 import { PLACEHOLDER_IMAGES } from "../../functions/constants";
 import { Post } from "../../interfaces";
@@ -22,9 +24,9 @@ const SubHeadCard = (post: Post) =>
             }}
           ></div>
           <div className="pl-2 font-semibold">
-            <a href={`/user/${post.author}`}>
+            <Link href={`/user/${post.author}`}>
               <span className="main-green">{post.author}</span>
-            </a>
+            </Link>
             <PostMetadata
               className="tracking-5 sub-opacity-68"
               created_utc={post.created_utc}
@@ -55,14 +57,14 @@ const SubHeadCard = (post: Post) =>
           {post.selftext}
         </h4>
         <div className="align-baseline p-0 pt-2">
-          <a className="sub-opacity-54 cursor-pointer font-normal text-sm">
+          <Link href={post.permalink} className="sub-opacity-54 cursor-pointer font-normal text-sm">
             Read more...
-          </a>
+          </Link>
         </div>
       </div>
       <div className="w-full flex justify-between flex-row items-center pt-4">
         <div className="flex flex-row items-center sub-opacity-54 tracking-tight">
-          <img className="cursor-pointer" src="/clap.svg" />
+          <Image className="cursor-pointer" src="/clap.svg" alt="Upvote" width={24} height={24} />
           <div>
             <p className="ml-2 text-sm">{`${post.ups}`}</p>
           </div>
@@ -71,7 +73,7 @@ const SubHeadCard = (post: Post) =>
           <div>
             <p className="mr-2 text-sm sub-opacity-54 cursor-pointer">{`${post.num_comments} responses`}</p>
           </div>
-          <img className="cursor-pointer" src="/save.svg" />
+          <Image className="cursor-pointer" src="/save.svg" alt="Save" width={24} height={24} />
         </div>
       </div>
     </div>

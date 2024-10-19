@@ -1,5 +1,8 @@
 <h3 align="center"><img src="./public/reddium-mockup.png" width="600px" style="border-radius: 5px" alt="Whisperify"></h3>
 
+> [!IMPORTANT]  
+> This is a fork of the original [Reddium](https://github.com/eightants/reddium) project. Updates include a Docker image, improved configuration, and a few UI tweaks.
+
 # Reddium
 
 Reddium is a Medium-themed Reddit client. It provides a clean, distraction-free browsing experience for Reddit content.
