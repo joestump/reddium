@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import React, { useState } from "react";
 import TitleHead from "../../components/TitleHead";
+import Header from "../../components/common/Header";
 import {
   Dropdown,
   NavMenu,
@@ -20,6 +21,7 @@ import { zipObject } from "lodash";
 import Cookies from "cookies";
 import { getSearch, getSearchClient } from "../../functions/service";
 import Image from 'next/image';
+import Logo from '../../components/common/Logo';  // Import the Logo component
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
@@ -75,21 +77,7 @@ const SearchPage = ({ searchRes, params }: any) => {
         />
         <meta property="og:image" content={`${DOMAIN}/reddium-sub.png`} />
       </TitleHead>
-      <header className="navbar-shadow">
-        <nav className=" flex items-center justify-center max-width-sub mx-auto z-50 h-16 lg:mx-12 sm:mx-6 sm:h-14">
-          <div className="flex-grow flex items-center">
-            <a href="/">
-              <div className="pr-4 h-8 flex flex-row items-center cursor-pointer">
-                <Image src="/reddium_symbol.svg" alt="Reddium symbol" width={48} height={32} />
-                <h1 className="ml-2 site-name text-3xl tracking-tighter text-black sm:hidden">
-                  Reddium
-                </h1>
-              </div>
-            </a>
-          </div>
-          <NavMenu token={params.token}/>
-        </nav>
-      </header>
+      <Header token={params.token} className="navbar-shadow" />
       <section className="lg:w-auto lg:mx-12 sm:mx-2">
         <div className="w-full main-container max-width-sub pb-4 pt-10 px-8 sub-top-border lg:flex sm:px-0">
           <div className="px-4 pb-6 w-full">

@@ -3,7 +3,7 @@ import { DOMAIN } from "../functions/constants";
 import { Props } from "../interfaces";
 import { NavMenu } from "./common";
 import TitleHead from "./TitleHead";
-import Logo from "./Logo";
+import Logo from "./common/Logo";
 
 const Subpage = ({
   children,

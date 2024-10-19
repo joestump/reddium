@@ -13,6 +13,7 @@ import UserComment from "../../components/user-page/UserComment";
 import { getIntFromString } from "../../functions/common";
 import { DOMAIN } from "../../functions/constants";
 import Cookies from "cookies";
+import Logo from '../../components/common/Logo';  // Import the Logo component
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
@@ -75,7 +76,9 @@ const MePage = ({ postData, userInfo, params }: any) => {
         <div className="flex flex-row items-center">
           <NavMenu token={params.token} />
           <a href="/">
-            <img className="ml-4 h-6 logo-opacity" src="/reddium_symbol.svg" />
+            <div className="ml-4 h-6 logo-opacity">
+              <Logo />
+            </div>
           </a>
         </div>
       </div>
@@ -104,10 +107,9 @@ const MePage = ({ postData, userInfo, params }: any) => {
             <div className="flex flex-row items-center sm:hidden">
               <NavMenu token={params.token} />
               <a href="/">
-                <img
-                  className="ml-6 h-6 logo-opacity"
-                  src="/reddium_symbol.svg"
-                />
+                <div className="ml-6 h-6 logo-opacity">
+                  <Logo />
+                </div>
               </a>
             </div>
           </div>

@@ -8,12 +8,11 @@ import {
 } from "../../../functions/service";
 import React, { useState } from "react";
 import TitleHead from "../../../components/TitleHead";
-import { NavMenu } from "../../../components/common";
+import Header from "../../../components/common/Header";  // Import Header
 import UserPost from "../../../components/user-page/UserPost";
 import UserComment from "../../../components/user-page/UserComment";
 import { DOMAIN } from "../../../functions/constants";
 import Cookies from "cookies";
-import Logo from "../../../components/Logo";
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
@@ -57,20 +56,9 @@ const UserPage = ({ postData, userInfo, params }: any) => {
         />
         <meta property="og:image" content={`${DOMAIN}/reddium-sub.png`} />
       </TitleHead>
-      <div className="h-full hidden sm:flex py-3 px-8 items-center sub-bottom-border justify-end max-width-main mx-auto z-50 h-16">
-        <div className="flex flex-row items-center">
-          <NavMenu token={params.token} />
-          <Logo />
-        </div>
-      </div>
+      <Header token={params.token} />
       <header className="sub-bottom-border">
         <nav className="h-full px-4 max-width-main mx-auto z-50 h-264 lg:mx-12 sm:mx-6 sm:px-0">
-          <div className="flex w-full items-center justify-end mt-6">
-            <div className="flex flex-row items-center sm:hidden">
-              <NavMenu token={params.token} />
-              <Logo />
-            </div>
-          </div>
           <div className="w-full flex items-start flex-col">
             <div className="mr-8 flex flex-row items-center cursor-pointer">
               <Link className="main-black my-10" href={`/user/${userInfo.name}`}>

@@ -15,6 +15,8 @@ import {
 import { PLACEHOLDER_IMAGES, TITLE_MAX } from "../../functions/constants";
 import { Post } from "../../interfaces";
 import { sendSave, sendUnsave, upvote } from "../../functions/service";
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const PostContent = ({
   title,
@@ -68,14 +70,14 @@ const PostContent = ({
       </h3>
       <div className="w-full mt-4 flex flex-row justify-between items-center sm:block">
         <div className="items-center sub-opacity-54 hidden sm:flex my-4">
-          <a
-            className="w-8/12 truncate hover:underline font-semibold"
+          <Link
             href={url}
+            className="w-8/12 truncate hover:underline font-semibold"
             target="_blank"
             rel="noopener noreferrer"
           >
             {url}
-          </a>
+          </Link>
         </div>
         <div className="items-center flex">
           <div
@@ -91,27 +93,33 @@ const PostContent = ({
             }}
           ></div>
           <div className="pl-3">
-            <Link href={`/user/${author}`}>
-              <span className="main-black text-md hover:underline cursor-pointer sm:text-sm">
-                {author}
-              </span>
+            <Link 
+              href={`/user/${author}`}
+              className="main-black text-md hover:underline cursor-pointer sm:text-sm"
+            >
+              {author}
             </Link>
             <div className="tracking-5 text-sm sub-opacity-68">
               <span>{getTime(created_utc)}</span>
               <span className="px-1">·</span>
-              <span>{subreddit_name_prefixed}</span>
+              <Link 
+                href={`/${subreddit_name_prefixed}`}
+                className="hover:underline"
+              >
+                {subreddit_name_prefixed}
+              </Link>
             </div>
           </div>
         </div>
         <div className="items-center flex sub-opacity-54 sm:hidden">
-          <a
-            className="w-48 truncate hover:underline font-semibold"
+          <Link
             href={url}
+            className="w-48 truncate hover:underline font-semibold"
             target="_blank"
             rel="noopener noreferrer"
           >
             {url}
-          </a>
+          </Link>
         </div>
       </div>
       <figure className="mt-16">
@@ -168,9 +176,9 @@ const PostContent = ({
                 )}
               </span>{" "}
               on{" "}
-              <a href="https://unsplash.com" className="underline">
+              <Link href="https://unsplash.com" className="underline">
                 Unsplash
-              </a>
+              </Link>
             </div>
           ) : (
             "Original Image"
@@ -178,9 +186,10 @@ const PostContent = ({
         </figcaption>
       </figure>
       <div className="mt-12 heading-font text-xl whitespace-pre-line main-black post-content sm:text-lg">
-        <MarkdownView
-          markdown={selftext}
-          options={{ tables: true, emoji: true }}
+        <ReactMarkdown 
+          children={selftext} 
+          remarkPlugins={[remarkGfm]}
+          className="mt-12 heading-font text-xl whitespace-pre-line main-black post-content sm:text-lg"
         />
       </div>
       <div className="w-full mt-4 pt-4 flex flex-row justify-between items-center">
