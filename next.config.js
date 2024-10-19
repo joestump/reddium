@@ -21,4 +21,13 @@ const nextConfig = {
   },
 };
 
+// Check for required environment variables
+const requiredEnvVars = ['REDDIUM_CLIENT_ID', 'REDDIUM_CLIENT_SECRET'];
+const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
+
+if (missingEnvVars.length > 0) {
+  console.error(`😢 Error: Missing required environment variables: ${missingEnvVars.join(', ')}`);
+  process.exit(1);
+}
+
 module.exports = nextConfig;

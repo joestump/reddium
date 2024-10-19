@@ -5,6 +5,8 @@ interface Config {
   REDDIUM_DISABLE_KOFI_LINK?: boolean;
   REDDIUM_DISABLE_GITHUB_LINK?: boolean;
   REDDIUM_THEME?: string;
+  REDDIUM_CLIENT_ID?: string;
+  REDDIUM_CLIENT_SECRET?: string;
 }
 
 export function useConfig() {
@@ -22,6 +24,8 @@ export function useConfig() {
     REDDIUM_DISABLE_KOFI_LINK: config?.REDDIUM_DISABLE_KOFI_LINK ?? false,
     REDDIUM_DISABLE_GITHUB_LINK: config?.REDDIUM_DISABLE_GITHUB_LINK ?? false,
     REDDIUM_THEME: config?.REDDIUM_THEME ?? 'default',
+    REDDIUM_CLIENT_ID: config?.REDDIUM_CLIENT_ID ?? '',
+    REDDIUM_CLIENT_SECRET: config?.REDDIUM_CLIENT_SECRET ?? '',
   };
 
   return { config: safeConfig };
