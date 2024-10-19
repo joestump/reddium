@@ -4,7 +4,6 @@ import TitleHead from "../../components/TitleHead";
 import Header from "../../components/common/Header";
 import {
   Dropdown,
-  NavMenu,
   SubredditCard,
   UserCard
 } from "../../components/common";
@@ -21,7 +20,6 @@ import { zipObject } from "lodash";
 import Cookies from "cookies";
 import { getSearch, getSearchClient } from "../../functions/service";
 import Image from 'next/image';
-import Logo from '../../components/common/Logo';  // Import the Logo component
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,

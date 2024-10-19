@@ -25,7 +25,6 @@ import RankedCard from "../components/home-page/RankedCard";
 import WideCard from "../components/home-page/WideCard";
 import TrendingSubs from "../components/home-page/TrendingSubs";
 import { H } from "highlight.run";
-import getConfig from 'next/config';
 import { useConfig } from '../functions/useConfig';  // Adjust the import path as needed
 
 export const getServerSideProps: GetServerSideProps = async ({
