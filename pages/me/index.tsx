@@ -15,6 +15,7 @@ import UserComment from "../../components/user-page/UserComment";
 import { getIntFromString } from "../../functions/common";
 import { DOMAIN } from "../../functions/constants";
 import Cookies from "cookies";
+import Logo from "../../components/Logo";
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
@@ -76,9 +77,7 @@ const MePage = ({ postData, userInfo, params }: any) => {
       <div className="h-full hidden sm:flex py-3 px-8 items-center sub-bottom-border justify-end max-width-main mx-auto z-50 h-16">
         <div className="flex flex-row items-center">
           <NavMenu token={params.token} />
-          <Link href="/">
-            <Image className="ml-4 h-6 logo-opacity" src="/reddium_symbol.svg" alt="Reddium Symbol" width={24} height={24} />
-          </Link>
+          <Logo />
         </div>
       </div>
       <header className="sub-bottom-border h-160">
@@ -105,15 +104,7 @@ const MePage = ({ postData, userInfo, params }: any) => {
             </div>
             <div className="flex flex-row items-center sm:hidden">
               <NavMenu token={params.token} />
-              <Link href="/">
-                <Image
-                  className="ml-6 h-6 logo-opacity"
-                  src="/reddium_symbol.svg"
-                  alt="Reddium Symbol"
-                  width={24}
-                  height={24}
-                />
-              </Link>
+              <Logo />
             </div>
           </div>
         </nav>

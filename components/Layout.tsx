@@ -1,10 +1,9 @@
 import React from "react";
-import Image from 'next/image';
-import Link from 'next/link';
 import { getTimeOfDay } from "../functions/common";
 import { DOMAIN } from "../functions/constants";
 import { NavMenu } from "./common";
 import Head from "next/head";
+import Logo from "./Logo";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -31,14 +30,7 @@ const Layout = ({ children, title = "This is the default title", token }: Layout
       <header>
         <nav className="flex items-center justify-center max-width-main mx-auto z-50 h-16 my-6 lg:mx-12 sm:mx-6">
           <div className="flex-grow flex items-center">
-            <Link href="/">
-              <div className="pr-4 nav-img h-8 flex flex-row items-center cursor-pointer sm:border-0">
-                <Image className="h-full sm:h-6" src="/reddium_symbol.svg" alt="Reddium Symbol" width={32} height={32} />
-                <h1 className="ml-4 site-name text-3xl tracking-tighter sm:hidden text-black">
-                  Reddium
-                </h1>
-              </div>
-            </Link>
+            <Logo />
             <div className="pl-4">
               <h1 className="font-bold text-lg leading-6 nav-greeting sm:hidden">
                 {getTimeOfDay()}
