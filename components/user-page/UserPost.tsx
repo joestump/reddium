@@ -54,7 +54,7 @@ const UserPost = ({
           src={replaceGifv(url)}
           alt={title}
           width={600}
-          height={300}
+          height={400}
           layout="responsive"
         />
       ) : thumbnail && thumbnail.includes("://") ? (
@@ -63,7 +63,7 @@ const UserPost = ({
           src={thumbnail}
           alt={title}
           width={600}
-          height={300}
+          height={400}
           layout="responsive"
         />
       ) : (

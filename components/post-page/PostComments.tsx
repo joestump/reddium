@@ -16,8 +16,8 @@ const PostComments = ({ comments, backToPost, token }: any) => {
           <Image 
             className="mr-3 transform rotate-90" 
             src="/down_arrow.svg" 
-            alt="Back to post" 
-            width={24} 
+            alt="Back to post"
+            width={24}
             height={24}
           />
           <div className="flex-grow text-center">Return to post</div>
