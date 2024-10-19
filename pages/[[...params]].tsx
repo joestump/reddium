@@ -1,6 +1,7 @@
 import Layout from "../components/Layout";
 import { zipObject } from "lodash";
 import Cookies from "cookies";
+import Image from 'next/image';
 
 import MidCard from "../components/home-page/MidCard";
 import { Dropdown, MidContainer } from "../components/common";
@@ -182,7 +183,13 @@ const IndexPage = ({ trendingSubs, profile, params }: any) => {
       </div>
       <div className="w-full flex main-container max-width-main pb-4 pt-10 sub-top-border lg:w-auto lg:mx-12 sm:mx-6">
         <div className="w-full flex mb-4 flex-row items-center">
-          <img className="mr-3" src="trending.svg" />
+          <Image 
+            src="/trending.svg" 
+            alt="Trending icon" 
+            width={24} 
+            height={24} 
+            className="mr-3"
+          />
           <div>
             <p className="heading-text text-sm leading-4 uppercase tracking-wide sm:text-xs">
               Trending on Reddit
@@ -201,13 +208,18 @@ const IndexPage = ({ trendingSubs, profile, params }: any) => {
             <WideCard key={ind} {...p} />
           ))}
           <div className="w-full text-center" ref={loader}>
-            {/* <WideCard {...({} as Post)} /> */}
             <button
               className="my-4 mx-auto p-2 cursor-pointer w-48 max-w-full load-more main-black font-semibold rounded flex flex-row justify-between items-center"
               onClick={fetchMorePosts}
             >
               <div className="flex-grow text-center">Show More</div>
-              <img className="ml-3" src="/down_arrow.svg" />
+              <Image 
+                src="/down_arrow.svg" 
+                alt="Down arrow" 
+                width={16} 
+                height={16} 
+                className="ml-3"
+              />
             </button>
           </div>
         </div>
@@ -215,7 +227,13 @@ const IndexPage = ({ trendingSubs, profile, params }: any) => {
           <div className="grid-right md:hidden">
             <div className="sticky top-8 p-8 about-bg flex flex-col">
               <div className="w-full flex mb-4 flex-row items-center">
-                <img className="mr-3" src="bookmarks.svg" alt="Bookmarks icon" />
+                <Image 
+                  src="/bookmarks.svg" 
+                  alt="Bookmarks icon" 
+                  width={24} 
+                  height={24} 
+                  className="mr-3"
+                />
                 <div>
                   <p className="heading-text text-sm leading-4 uppercase tracking-wide sm:text-xs">
                     About Reddium
@@ -241,7 +259,13 @@ const IndexPage = ({ trendingSubs, profile, params }: any) => {
                 </p>
               </div>
               <div className="w-full pb-6 hidden">
-                <img className="w-4/12 float-right" src="/signature.png" alt="Signature" />
+                <Image 
+                  src="/signature.png" 
+                  alt="Signature" 
+                  width={100} 
+                  height={50} 
+                  className="w-4/12 float-right"
+                />
               </div>
               {showGithubLink && (
                 <a
