@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import MarkdownView from "react-showdown";
 import Image from 'next/image';
 import {
   getEmbedLink,
@@ -15,8 +14,7 @@ import {
 import { PLACEHOLDER_IMAGES, TITLE_MAX } from "../../functions/constants";
 import { Post } from "../../interfaces";
 import { sendSave, sendUnsave, upvote } from "../../functions/service";
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
+import PostBody from './PostBody';
 
 const PostContent = ({
   title,
@@ -185,13 +183,10 @@ const PostContent = ({
           )}
         </figcaption>
       </figure>
-      <div className="mt-12 heading-font text-xl whitespace-pre-line main-black post-content sm:text-lg">
-        <ReactMarkdown 
-          children={selftext} 
-          remarkPlugins={[remarkGfm]}
-          className="mt-12 heading-font text-xl whitespace-pre-line main-black post-content sm:text-lg"
-        />
-      </div>
+      <PostBody 
+        content={selftext}
+        className="mt-12 heading-font text-xl whitespace-pre-line main-black post-content sm:text-lg"
+      />
       <div className="w-full mt-4 pt-4 flex flex-row justify-between items-center">
         <div className="flex flex-row items-center">
           <div className="flex flex-row items-center sub-opacity-54 tracking-tight">
