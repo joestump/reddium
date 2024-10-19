@@ -159,7 +159,7 @@ export const NavMenu = ({ token = "" }: any) => {
           ""
         )}
         {!config.REDDIUM_DISABLE_KOFI_LINK && (
-          <Link href="https://ko-fi.com/eightants" target="_blank" rel="noopener noreferrer">
+          <Link href="https://ko-fi.com/joestump" target="_blank" rel="noopener noreferrer">
             <Image
               className="h-8 cursor-pointer p-1 ml-2 sub-opacity-68 link-black-hover"
               src="/coffee.svg"
@@ -170,7 +170,7 @@ export const NavMenu = ({ token = "" }: any) => {
           </Link>
         )}
         {!config.REDDIUM_DISABLE_GITHUB_LINK && (
-          <Link href="https://github.com/eightants/reddium/" target="_blank" rel="noopener noreferrer">
+          <Link href="https://github.com/joestump/reddium/" target="_blank" rel="noopener noreferrer">
             <Image
               className="h-10 cursor-pointer p-1 ml-2 sub-opacity-68 link-black-hover hidden md:block"
               src="/github.svg"
@@ -182,7 +182,7 @@ export const NavMenu = ({ token = "" }: any) => {
         )}
       </div>
       {!config.REDDIUM_DISABLE_GITHUB_LINK && (
-        <Link href="https://github.com/eightants/reddium/" target="_blank" rel="noopener noreferrer">
+        <Link href="https://github.com/joestump/reddium/" target="_blank" rel="noopener noreferrer">
           <button className="md:hidden my-4 ml-4 p-1 px-3 sub-opacity-68 link-black-hover text-sm cursor-pointer max-w-full btn-outline-black rounded">
             Star on GitHub
           </button>

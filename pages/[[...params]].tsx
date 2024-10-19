@@ -272,7 +272,7 @@ const IndexPage = ({ trendingSubs, profile, params }: any) => {
               </div>
               {showGithubLink && (
                 <a
-                  href="https://github.com/eightants/reddium/"
+                  href="https://github.com/joestump/reddium"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -283,7 +283,7 @@ const IndexPage = ({ trendingSubs, profile, params }: any) => {
               )}
               {showKofiLink && (
                 <a
-                  href="https://ko-fi.com/eightants"
+                  href="https://ko-fi.com/joestump"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
