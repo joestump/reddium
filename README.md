@@ -1,47 +1,95 @@
 <h3 align="center"><img src="./public/reddium-mockup.png" width="600px" style="border-radius: 5px" alt="Whisperify"></h3>
 
-<p align="center">
-  <a href="https://reddium.vercel.app" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/visit-reddium.vercel.app-35586C.svg"></a>
-  <a href="https://github.com/eightants/reddium/releases/latest"><img src="https://img.shields.io/github/release/eightants/reddium/all.svg?colorB=38a275?label=version"></a>
-  <a href="https://ko-fi.com/eightants" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/buy_me_a-coffee-ff69b4.svg"></a>
-</p>
+# Reddium
 
-Have you ever wanted to browse Reddit while studying at Starbucks? Or maybe while sitting on the subway to work? In those situations, you might start being self-conscious of Reddit's bright and distinct website. What if people around you judge the subreddits you browse and the posts you read? Now, think about someone browsing Medium in the same situations. Just seeing the interface of Medium gives the impression of someone being a "knowledge seeker".
+Reddium is a Medium-themed Reddit client. It provides a clean, distraction-free browsing experience for Reddit content.
 
-On the other hand, the Reddit experience on a mobile browser is lacking at best. Many functionalities require you to download the Reddit app. Is there a way to improve the experience without downloading the app?
+## Features
 
-Enter Reddium: [reddium.vercel.app](https://reddium.vercel.app)
+- Clean, Medium-inspired interface for browsing Reddit
+- View posts, comments, and subreddits
+- Responsive design for desktop and mobile
+- Dark mode support
+- Image proxy for Reddit images
 
-Reddium is a Medium-themed Reddit client. No longer worry about being judged while browsing Reddit in public. The Reddium interface converts Reddit posts, discussions, and memes into well-crafted articles. Once remote work is over, Reddium will be the perfect site to visit during your commute.
+## Getting Started
 
-Built with Next.js, TailwindCSS, and hosted on Vercel. Reddium is built with optimization in mind, making use of Next.js 10's analytics and server-side rendering. Placeholder images are obtained from [Unsplash](https://unsplash.com), and avatars are generated from [thispersondoesnotexist.com](https://thispersondoesnotexist.com/). Reddium is currently still in development.
+### Prerequisites
 
-<img src="./public/reddit-post.png" width="500px"/>
+- Node.js (v14 or later recommended)
+- `npm` or `yarn`
 
-Distinct Reddit interface
+### Installation
 
-<img src="./public/reddium-post.png" width="500px"/>
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/reddium.git
+   ```
 
-On Reddium
+2. Navigate to the project directory:
+   ```
+   cd reddium
+   ```
 
+3. Install dependencies:
+   ```
+   npm install
+   ```
+   or
+   ```
+   yarn install
+   ```
 
-## Functionality
+4. Create a `.env.local` file in the root directory and add your Reddit API credentials:
+   ```
+   REDDIUM_CLIENT_ID=your_client_id
+   REDDIUM_CLIENT_SECRET=your_client_secret
+   ```
 
-- Browse subreddits, posts, and comments in the Medium interface
-- Search Reddit through the Medium search interface
-- Visit user profiles
-- Quality of life features to recreate the Reddit experience as closely as possible (WIP)
-- Login with Reddit to view your personal subscriptions in Reddium (Planned)
+5. Start the development server:
+   ```
+   npm run dev
+   ```
+   or
+   ```
+   yarn dev
+   ```
 
-## Contribute
+6. Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
-1. Clone the repository to your local machine. 
-2. Install all packages. 
-```
-$ npm i
-```
-3. Start the development server. 
-```
-$ npm run dev
-```
-4. Make a pull request
+## Configuration
+
+Reddium can be configured using the following environment variables:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `REDDIUM_DOMAIN` | The domain where Reddium is hosted | `http://localhost:3000` |
+| `REDDIUM_CLIENT_ID` | Reddit API client ID | - |
+| `REDDIUM_CLIENT_SECRET` | Reddit API client secret | - |
+| `REDDIUM_DISABLE_GITHUB_LINK` | Disable the GitHub link in the UI | `false` |
+| `REDDIUM_DISABLE_KOFI_LINK` | Disable the Ko-fi link in the UI | `false` |
+| `REDDIUM_DISABLE_ABOUT` | Disable the About section in the UI | `false` |
+
+## Docker
+
+Reddium can be run as a Docker container. To run the latest version:
+
+1. Pull the Docker image:
+   ```
+   docker pull ghcr.io/joestump/reddium:main
+   ```
+
+2. Run the container:
+   ```
+   docker run -p 3000:3000 -e REDDIUM_CLIENT_ID=your_client_id -e REDDIUM_CLIENT_SECRET=your_client_secret ghcr.io/joestump/reddium:main
+   ```
+
+Replace `your_client_id` and `your_client_secret` with your actual Reddit API credentials.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
