@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
 import { getIntFromString, getTime, limitText } from "../../functions/common";
-import { CLIENT_ID, DESC_MAX, REDIRECT_URI } from "../../functions/constants";
+import { DESC_MAX } from "../../functions/constants";
 import { DropdownProps, Props } from "../../interfaces";
 import { useConfig } from '../../lib/ConfigContext'; 
 import LoginButton from './LoginButton';  // Import the new LoginButton component

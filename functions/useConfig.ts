@@ -8,6 +8,7 @@ interface Config {
   REDDIUM_CLIENT_ID?: string;
   REDDIUM_CLIENT_SECRET?: string;
   REDDIUM_DISABLE_LOGIN?: boolean;
+  REDDIUM_DOMAIN?: string;
 }
 
 export function useConfig() {
@@ -21,13 +22,14 @@ export function useConfig() {
   }, []);
 
   const safeConfig = {
-    REDDIUM_SHOW_ABOUT: config?.REDDIUM_SHOW_ABOUT ?? false,
-    REDDIUM_DISABLE_KOFI_LINK: config?.REDDIUM_DISABLE_KOFI_LINK ?? false,
-    REDDIUM_DISABLE_GITHUB_LINK: config?.REDDIUM_DISABLE_GITHUB_LINK ?? false,
+    REDDIUM_SHOW_ABOUT: config?.REDDIUM_SHOW_ABOUT,
+    REDDIUM_DISABLE_KOFI_LINK: config?.REDDIUM_DISABLE_KOFI_LINK,
+    REDDIUM_DISABLE_GITHUB_LINK: config?.REDDIUM_DISABLE_GITHUB_LINK,
     REDDIUM_THEME: config?.REDDIUM_THEME ?? 'default',
     REDDIUM_CLIENT_ID: config?.REDDIUM_CLIENT_ID ?? '',
     REDDIUM_CLIENT_SECRET: config?.REDDIUM_CLIENT_SECRET ?? '',
-    REDDIUM_DISABLE_LOGIN: config?.REDDIUM_DISABLE_LOGIN ?? true,
+    REDDIUM_DISABLE_LOGIN: config?.REDDIUM_DISABLE_LOGIN,
+    REDDIUM_DOMAIN: config?.REDDIUM_DOMAIN,
   };
 
   return { config: safeConfig };

@@ -6,11 +6,10 @@ const nextConfig = {
     loaderFile: './lib/imageLoader.ts',
   },
   publicRuntimeConfig: {
-    // Set defaults
     REDDIUM_DISABLE_ABOUT: true,
     REDDIUM_DISABLE_KOFI_LINK: true,
     REDDIUM_DISABLE_LOGIN: true,
-    // Overwrite with any REDDIUM_ environment variables
+    REDDIUM_DOMAIN: 'http://localhost:3000',
     ...Object.fromEntries(
       Object.entries(process.env)
         .filter(([key]) => key.startsWith('REDDIUM_'))
