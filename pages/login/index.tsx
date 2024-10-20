@@ -1,7 +1,10 @@
 import { GetServerSideProps } from "next";
 import React from "react";
 import Cookies from "cookies";
-import { CLIENT_ID, REDIRECT_URI } from "../../functions/constants";
+import getConfig from 'next/config';
+import { REDIRECT_URI } from "../../functions/constants";
+
+const { publicRuntimeConfig, serverRuntimeConfig } = getConfig() || {};
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
@@ -15,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Basic ${Buffer.from(
-          `${CLIENT_ID}:${process.env.CLIENT_SECRET}`
+          `${publicRuntimeConfig.REDDIUM_CLIENT_ID}:${serverRuntimeConfig.REDDIUM_CLIENT_SECRET}`
         ).toString("base64")}`,
       },
       body: new URLSearchParams({

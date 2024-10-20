@@ -6,6 +6,7 @@ import { getIntFromString, getTime, limitText } from "../../functions/common";
 import { CLIENT_ID, DESC_MAX, REDIRECT_URI } from "../../functions/constants";
 import { DropdownProps, Props } from "../../interfaces";
 import { useConfig } from '../../lib/ConfigContext'; 
+import LoginButton from './LoginButton';  // Import the new LoginButton component
 
 export const MidContainer = ({ children }: Props) => (
   <div className="mid-container px-4 sm:px-0">{children}</div>
@@ -191,13 +192,7 @@ export const NavMenu = ({ token = "" }: any) => {
       {token != "" ? (
         <ProfileOptions />
       ) : (
-        <Link href={`https://www.reddit.com/api/v1/authorize.compact?client_id=${CLIENT_ID}&response_type=code&state=testing&redirect_uri=${REDIRECT_URI}&duration=temporary&scope=${encodeURIComponent(
-          "read vote save identity subscribe"
-        )}`}>
-          <button className="my-4 ml-4 p-1 px-3 text-sm cursor-pointer max-w-full btn-black text-white outline-1px rounded">
-            Login
-          </button>
-        </Link>
+        <LoginButton />
       )}
     </div>
   );

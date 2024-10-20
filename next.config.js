@@ -9,6 +9,7 @@ const nextConfig = {
     // Set defaults
     REDDIUM_DISABLE_ABOUT: true,
     REDDIUM_DISABLE_KOFI_LINK: true,
+    REDDIUM_DISABLE_LOGIN: true,
     // Overwrite with any REDDIUM_ environment variables
     ...Object.fromEntries(
       Object.entries(process.env)
@@ -20,5 +21,14 @@ const nextConfig = {
     ignoreDuringBuilds: false,
   },
 };
+
+// Check for required environment variables
+const requiredEnvVars = ['REDDIUM_CLIENT_ID', 'REDDIUM_CLIENT_SECRET'];
+const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
+
+if (missingEnvVars.length > 0) {
+  console.error(`😢 Error: Missing required environment variables: ${missingEnvVars.join(', ')}`);
+  process.exit(1);
+}
 
 module.exports = nextConfig;
