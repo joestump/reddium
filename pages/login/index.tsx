@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Basic ${Buffer.from(
-          `${publicRuntimeConfig.REDDIUM_CLIENT_ID}:${serverRuntimeConfig.REDDIUM_CLIENT_SECRET}`
+          `${publicRuntimeConfig.REDDIUM_CLIENT_ID}:${publicRuntimeConfig.REDDIUM_CLIENT_SECRET}`
         ).toString("base64")}`,
       },
       body: new URLSearchParams({
@@ -30,7 +30,6 @@ export const getServerSideProps: GetServerSideProps = async ({
     const resp = await (
       await fetch("https://www.reddit.com/api/v1/access_token", requestOptions)
     ).json();
-    console.log("Received access token:", resp.access_token); // Debug output
     cookies.set("token", resp.access_token, { maxAge: 600000 });
     delete query.code;
   } else {
