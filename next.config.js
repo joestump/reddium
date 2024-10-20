@@ -9,6 +9,7 @@ const nextConfig = {
     // Set defaults
     REDDIUM_DISABLE_ABOUT: true,
     REDDIUM_DISABLE_KOFI_LINK: true,
+    REDDIUM_DISABLE_LOGIN: true,
     // Overwrite with any REDDIUM_ environment variables
     ...Object.fromEntries(
       Object.entries(process.env)

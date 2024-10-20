@@ -7,6 +7,7 @@ interface Config {
   REDDIUM_THEME?: string;
   REDDIUM_CLIENT_ID?: string;
   REDDIUM_CLIENT_SECRET?: string;
+  REDDIUM_DISABLE_LOGIN?: boolean;
 }
 
 export function useConfig() {
@@ -26,6 +27,7 @@ export function useConfig() {
     REDDIUM_THEME: config?.REDDIUM_THEME ?? 'default',
     REDDIUM_CLIENT_ID: config?.REDDIUM_CLIENT_ID ?? '',
     REDDIUM_CLIENT_SECRET: config?.REDDIUM_CLIENT_SECRET ?? '',
+    REDDIUM_DISABLE_LOGIN: config?.REDDIUM_DISABLE_LOGIN ?? true,
   };
 
   return { config: safeConfig };
