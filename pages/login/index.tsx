@@ -30,8 +30,11 @@ export const getServerSideProps: GetServerSideProps = async ({
     const resp = await (
       await fetch("https://www.reddit.com/api/v1/access_token", requestOptions)
     ).json();
+    console.log("Received access token:", resp.access_token); // Debug output
     cookies.set("token", resp.access_token, { maxAge: 600000 });
     delete query.code;
+  } else {
+    console.log("No code received: ", query); // Debug output
   }
   res.statusCode = 302;
   res.setHeader("Location", `/`);
