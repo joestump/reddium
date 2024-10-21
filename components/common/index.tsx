@@ -5,8 +5,9 @@ import Link from 'next/link';
 import { getIntFromString, getTime, limitText } from "../../functions/common";
 import { DESC_MAX } from "../../functions/constants";
 import { DropdownProps, Props } from "../../interfaces";
-import { useConfig } from '../../lib/ConfigContext'; 
-import LoginButton from './LoginButton';  // Import the new LoginButton component
+import { useConfig } from '../../functions/useConfig'; 
+import LoginButton from './LoginButton';
+import { useAuth } from '../../contexts/AuthContext'; // Add this import
 
 export const MidContainer = ({ children }: Props) => (
   <div className="mid-container px-4 sm:px-0">{children}</div>
@@ -130,10 +131,11 @@ export const PostMetadata = ({
   </div>
 );
 
-export const NavMenu = ({ token = "" }: any) => {
+export const NavMenu = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const config = useConfig();
+  const { token } = useAuth(); // Add this line
 
   const newSearch = () => (window.location.href = `/search/?q=${searchTerm}`);
 
@@ -189,7 +191,7 @@ export const NavMenu = ({ token = "" }: any) => {
           </button>
         </Link>
       )}
-      {token != "" ? (
+      {token ? (
         <ProfileOptions />
       ) : (
         <LoginButton />
