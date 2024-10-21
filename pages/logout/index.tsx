@@ -1,18 +1,24 @@
-import { GetServerSideProps } from "next";
-import React from "react";
-import Cookies from "cookies";
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { destroyCookie } from 'nookies';
+import { useAuth } from '../../contexts/AuthContext';
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const cookies = new Cookies(req, res);
-  cookies.set("token", "");
-  res.statusCode = 302;
-  res.setHeader("Location", `/`);
-  res.end();
-  return {
-    props: {}
-  };
+const LogoutPage = () => {
+  const router = useRouter();
+  const { setToken } = useAuth();
+
+  useEffect(() => {
+    const logout = async () => {
+      destroyCookie(null, 'token', { path: '/' });
+      setToken(null);
+      await new Promise(resolve => setTimeout(resolve, 100));
+      router.push('/');
+    };
+
+    logout();
+  }, [router, setToken]);
+
+  return <div>Logging out...</div>;
 };
-
-const LogoutPage = () => <div></div>;
 
 export default LogoutPage;

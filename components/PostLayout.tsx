@@ -6,7 +6,7 @@ import { NavMenu } from "./common";
 import TitleHead from "./TitleHead";
 import Logo from "./common/Logo";
 
-const PostLayout = ({ children, title, permalink, thumbnail, token }: Props) => (
+const PostLayout = ({ children, title, permalink, thumbnail }: Props) => (
   <div>
     <TitleHead title={title}>
       <meta name="description" content={`Read on Reddium`} />
@@ -30,7 +30,7 @@ const PostLayout = ({ children, title, permalink, thumbnail, token }: Props) => 
         <div className="flex-grow flex items-center">
           <Logo />
         </div>
-        <NavMenu token={token}/>
+        <NavMenu />
       </nav>
     </header>
     {children}

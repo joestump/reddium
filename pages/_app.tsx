@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { AppProps } from "next/app";
 import "../styles/styles.css";
 import { H } from "highlight.run";
-import { ConfigProvider } from '../lib/ConfigContext'
+import { ConfigProvider } from '../contexts/ConfigContext'
 import { useConfig } from '../functions/useConfig'; 
+import { AuthProvider } from '../contexts/AuthContext';
 
 if (typeof window !== "undefined") {
   H.init("5ldw65eo");
@@ -20,9 +21,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ConfigProvider>
-      <div>
-        <Component {...pageProps} />
-      </div>
+      <AuthProvider>
+        <div>
+          <Component {...pageProps} />
+        </div>
+      </AuthProvider>
     </ConfigProvider>
   );
 };

@@ -1,12 +1,13 @@
 import _ from 'lodash';
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
 import { getIntFromString, getTime, limitText } from "../../functions/common";
 import { DESC_MAX } from "../../functions/constants";
 import { DropdownProps, Props } from "../../interfaces";
-import { useConfig } from '../../lib/ConfigContext'; 
-import LoginButton from './LoginButton';  // Import the new LoginButton component
+import { useConfig } from '../../functions/useConfig'; 
+import LoginButton from './LoginButton';
+import { useAuth } from '../../contexts/AuthContext'; // Add this import
 
 export const MidContainer = ({ children }: Props) => (
   <div className="mid-container px-4 sm:px-0">{children}</div>
@@ -14,44 +15,61 @@ export const MidContainer = ({ children }: Props) => (
 
 const ProfileOptions = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const dropdown = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const avatarRef = useRef<HTMLDivElement>(null);
+
+  console.log("ProfileOptions - showDropdown:", showDropdown);
+
+  const toggleDropdown = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowDropdown(prev => !prev);
+  }, []);
 
   useEffect(() => {
-    if (!showDropdown) return;
-    function handleClick(e: any) {
-      if (dropdown.current && !dropdown.current.contains(e.target)) {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node) &&
+        avatarRef.current &&
+        !avatarRef.current.contains(e.target as Node)
+      ) {
         setShowDropdown(false);
       }
+    };
+
+    if (showDropdown) {
+      document.addEventListener('mousedown', handleOutsideClick);
     }
-    window.addEventListener("click", handleClick);
-    return () => window.removeEventListener("click", handleClick);
-  });
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [showDropdown]);
 
   return (
     <div className="main-black relative">
       <div
+        ref={avatarRef}
         className="w-10 h-10 sm:h-8 sm:w-8 flex justify-between items-center rounded-full ml-4 cursor-pointer"
         style={{
           backgroundImage: `url("/avatar.svg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        onClick={() => setShowDropdown(!showDropdown)}
+        onClick={toggleDropdown}
       ></div>
-      {showDropdown ? (
+      {showDropdown && (
         <div
-          className="dropdown-select absolute w-48 mt-6 z-20 right-0 left-auto rounded sub-text"
-          ref={dropdown}
+          className="dropdown-select absolute w-48 mt-2 z-50 right-0 bg-white shadow-lg rounded-md overflow-hidden"
+          ref={dropdownRef}
         >
-          <Link href="/me" className="my-1 px-5 p-2 cursor-pointer link-black-hover block">
+          <Link href="/me" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             View Profile
           </Link>
-          <Link href="/logout" className="my-1 px-5 p-2 cursor-pointer link-black-hover block">
+          <Link href="/logout" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             Sign out
           </Link>
         </div>
-      ) : (
-        <div></div>
       )}
     </div>
   );
@@ -130,10 +148,11 @@ export const PostMetadata = ({
   </div>
 );
 
-export const NavMenu = ({ token = "" }: any) => {
+export const NavMenu = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const config = useConfig();
+  const { config } = useConfig();  // Destructure to get the config object
+  const { token } = useAuth();
 
   const newSearch = () => (window.location.href = `/search/?q=${searchTerm}`);
 
@@ -189,7 +208,7 @@ export const NavMenu = ({ token = "" }: any) => {
           </button>
         </Link>
       )}
-      {token != "" ? (
+      {token ? (
         <ProfileOptions />
       ) : (
         <LoginButton />

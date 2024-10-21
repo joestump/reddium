@@ -8,13 +8,12 @@ import {
 import React, { useState } from "react";
 import Image from 'next/image';
 import TitleHead from "../../components/TitleHead";
-import { NavMenu } from "../../components/common";
+import Header from "../../components/common/Header";  // Import the Header component
 import UserPost from "../../components/user-page/UserPost";
 import UserComment from "../../components/user-page/UserComment";
 import { getIntFromString } from "../../functions/common";
 import { DOMAIN } from "../../functions/constants";
 import Cookies from "cookies";
-import Logo from '../../components/common/Logo';  // Import the Logo component
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
@@ -51,10 +50,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
 const MePage = ({ postData, userInfo, params }: any) => {
   const [{ posts, after }, setPostData] = useState(postData);
-  // const [selectedParams, setSelectedParams] = useState({
-  //   ...zipObject(POPULAR_PARAM_KEY, POPULAR_PARAM_DEFAULT),
-  //   ...params
-  // });
+
   const fetchMorePosts = async () => {
     const next = await getUserPostsClient({
       ...params,
@@ -62,6 +58,7 @@ const MePage = ({ postData, userInfo, params }: any) => {
     });
     setPostData({ posts: [...posts, ...next.posts], after: next.after });
   };
+
   return (
     <div>
       <TitleHead title={`${userInfo.name} – Reddium`}>
@@ -73,16 +70,9 @@ const MePage = ({ postData, userInfo, params }: any) => {
         />
         <meta property="og:image" content={`${DOMAIN}/reddium-sub.png`} />
       </TitleHead>
-      <div className="h-full hidden sm:flex py-3 px-8 items-center sub-bottom-border justify-end max-width-main mx-auto z-50 h-16">
-        <div className="flex flex-row items-center">
-          <NavMenu token={params.token} />
-          <a href="/">
-            <div className="ml-4 h-6 logo-opacity">
-              <Logo />
-            </div>
-          </a>
-        </div>
-      </div>
+      
+      <Header token={params.token} />
+
       <header className="sub-bottom-border h-160">
         <nav className="h-full flex px-4 items-center justify-center max-width-main mx-auto z-50 h-16 lg:mx-12 sm:mx-6 sm:px-0">
           <div className="flex w-full items-center justify-center">
@@ -104,14 +94,6 @@ const MePage = ({ postData, userInfo, params }: any) => {
                   </a>
                 </div>
               </div>
-            </div>
-            <div className="flex flex-row items-center sm:hidden">
-              <NavMenu token={params.token} />
-              <a href="/">
-                <div className="ml-6 h-6 logo-opacity">
-                  <Logo />
-                </div>
-              </a>
             </div>
           </div>
         </nav>

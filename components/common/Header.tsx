@@ -8,7 +8,7 @@ interface HeaderProps {
   className?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ token, className = '' }) => {
+const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   return (
     <header className={className}>
       <nav className="flex items-center justify-center max-width-main mx-auto z-50 h-16 my-6 lg:mx-12 sm:mx-6">
@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ token, className = '' }) => {
             </h1>
           </div>
         </div>
-        <NavMenu token={token} />
+        <NavMenu />
       </nav>
     </header>
   );
