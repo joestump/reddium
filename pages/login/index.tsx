@@ -1,8 +1,6 @@
 import { GetServerSideProps } from "next";
 import React from "react";
 import { setCookie } from 'nookies';
-import { useAuth } from '../../contexts/AuthContext';
-import { useRouter } from 'next/router';
 import getConfig from 'next/config';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

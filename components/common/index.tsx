@@ -151,7 +151,7 @@ export const PostMetadata = ({
 export const NavMenu = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const config = useConfig();
+  const { config } = useConfig();  // Destructure to get the config object
   const { token } = useAuth();
 
   const newSearch = () => (window.location.href = `/search/?q=${searchTerm}`);

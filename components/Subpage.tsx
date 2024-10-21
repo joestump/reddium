@@ -9,7 +9,6 @@ const Subpage = ({
   children,
   title,
   subreddit,
-  token,
   backgroundColor = "white"
 }: Props) => (
   <div>
@@ -28,7 +27,7 @@ const Subpage = ({
         <div className="flex-grow flex items-center">
           <Logo />
         </div>
-        <NavMenu token={token}/>
+        <NavMenu />
       </nav>
     </header>
     {children}
