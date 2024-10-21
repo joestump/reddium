@@ -45,9 +45,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const LoginPage = () => {
-  const { setToken } = useAuth();
-  const router = useRouter();
-
   return <div>Processing login...</div>;
 };
 

@@ -17,6 +17,8 @@ const ProfileOptions = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdown = useRef<HTMLDivElement>(null);
 
+  console.log("ProfileOptions - showDropdown:", showDropdown);
+
   useEffect(() => {
     if (!showDropdown) return;
     function handleClick(e: any) {
@@ -135,7 +137,7 @@ export const NavMenu = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const config = useConfig();
-  const { token } = useAuth(); // Add this line
+  const { token } = useAuth();
 
   const newSearch = () => (window.location.href = `/search/?q=${searchTerm}`);
 
