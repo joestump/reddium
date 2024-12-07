@@ -1,5 +1,6 @@
 import { Post, QueryParams } from "../interfaces";
 import { SPECIAL_SUBREDDITS } from "./constants";
+import getConfig from 'next/config';
 
 export async function getPopularPosts({
   subreddit = "popular",
@@ -61,30 +62,37 @@ export async function getSubredditInfo({ subreddit, token = "" }: QueryParams) {
 export async function getPostInfo({
   subreddit,
   postid,
-  commentid,
   sort = "confidence",
   token = ""
 }: QueryParams) {
-  const postReq = commentid == "" ? postid : `${postid}/eightants/${commentid}`;
-  const url =
-    token != ""
-      ? `https://oauth.reddit.com/r/${subreddit}/comments/${postReq}?sort=${sort}`
-      : `https://www.reddit.com/r/${subreddit}/comments/${postReq}.json?sort=${sort}`;
-  const headerOptions =
-    token != ""
-      ? {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      : {};
-  const res = await (await fetch(url, headerOptions)).json();
-  if (!res.hasOwnProperty("error")) {
-    const comments: Post[] = res[1].data.children.map((post: any) => post.data);
-    return {
-      post: res[0].data.children[0].data,
-      comments: comments
-    };
+  const { publicRuntimeConfig } = getConfig();
+  let url: string;
+  if (typeof window === 'undefined') {
+    const domain = publicRuntimeConfig.REDDIUM_DOMAIN;
+    url = `${domain}/api/get-comments?subreddit=${encodeURIComponent(subreddit)}&postId=${encodeURIComponent(postid)}&sort=${encodeURIComponent(sort)}`;
+  } else {
+    // On the client, use a relative URL
+    url = `/api/get-comments?subreddit=${encodeURIComponent(subreddit)}&postId=${encodeURIComponent(postid)}&sort=${encodeURIComponent(sort)}`;
   }
-  return res;
+
+  const headerOptions: RequestInit = {
+    headers: token ? { Authorization: `Bearer ${token}` } : {}
+  };
+  
+  try {
+    const res = await fetch(url, headerOptions);
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    
+    const data = await res.json();
+    return {
+      comments: data.comments
+    };
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    throw error;
+  }
 }
 
 export async function getUserPosts({
@@ -242,4 +250,20 @@ export async function getMoreCommentsClient(params: any) {
     return comments;
   }
   return res;
+}
+
+export async function postComment({ postId, comment, token }: { postId: string; comment: string; token: string }) {
+  const headerOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ postId, comment })
+  };
+  const response = await fetch('/api/post-comment', headerOptions);
+  if (!response.ok) {
+    throw new Error('Failed to post comment');
+  }
+  return response.json();
 }

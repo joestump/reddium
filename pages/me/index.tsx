@@ -5,7 +5,7 @@ import {
   getUserPosts,
   getUserPostsClient,
 } from "../../functions/service";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from 'next/image';
 import TitleHead from "../../components/TitleHead";
 import Header from "../../components/common/Header";  // Import the Header component
@@ -14,6 +14,9 @@ import UserComment from "../../components/user-page/UserComment";
 import { getIntFromString } from "../../functions/common";
 import { DOMAIN } from "../../functions/constants";
 import Cookies from "cookies";
+import { useAuth } from '../../contexts/AuthContext';
+import Inbox from '../../components/Inbox';
+import Link from 'next/link';
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
@@ -86,11 +89,22 @@ const MePage = ({ postData, userInfo, params }: any) => {
                 <div className="mx-2 sm:ml-0">{`${userInfo.total_karma} Karma`}</div>
                 <span className="px-2">·</span>
                 <div className="mx-2">
+                  <Link href={`/user/${userInfo.name}`}>
+                    <a
+                      className={`link-black-hover ${activeTab === 'overview' ? 'font-bold' : ''}`}
+                      onClick={() => setActiveTab('overview')}
+                    >
+                      Overview
+                    </a>
+                  </Link>
+                </div>
+                <span className="px-2">·</span>
+                <div className="mx-2">
                   <a
-                    className="link-black-hover"
-                    href={`/user/${userInfo.name}`}
+                    className={`link-black-hover ${activeTab === 'messages' ? 'font-bold' : ''}`}
+                    onClick={() => setActiveTab('messages')}
                   >
-                    Overview
+                    Messages
                   </a>
                 </div>
               </div>
